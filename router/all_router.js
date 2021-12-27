@@ -6,19 +6,22 @@ const RemoveClickfunnelTag = require("../remove_ClickfunnelTag");
 const Aweber = require("../remove_AweberTag");
 const tradeRefreshToken = require("../utils/trade_refresh_token");
 
-app.post("/webhook", (req, res) => {
+app.get("/webhook", (req, res) => {
+
   const proTag = "pro";
   const basicTag = "basic";
   const englishByTheWayTag = "english";
   const id = "61c63785bcb637c1cb9e6270";
-
-  const { client_email, course_name } = req.body;
+  const { client_email, course_name } = req.query;
 
 
   if (course_name == "קונפידנס") {
     ///pro basic tag
 
     RemoveClickfunnelTag.Tag(basicTag, client_email);
+    RemoveClickfunnelTag.Tag(proTag, client_email);
+    RemoveClickfunnelTag.Tag(basicTag, client_email);
+    RemoveClickfunnelTag.Tag(proTag, client_email);
     //get old token
     Token.findById(id)
       .select("accessToken  -_id")
@@ -48,6 +51,7 @@ app.post("/webhook", (req, res) => {
             RemoveClickfunnelTag.Tag(proTag, client_email);
             RemoveClickfunnelTag.Tag(basicTag, client_email);
             RemoveClickfunnelTag.Tag(proTag, client_email);
+            RemoveClickfunnelTag.Tag(basicTag, client_email);
             if (response == 209) {
               return res.status(200).json({ message: "success" });
             } else {
@@ -64,7 +68,7 @@ app.post("/webhook", (req, res) => {
   } else if (course_name == "English By The Way") {
     ///English by the way tag
     RemoveClickfunnelTag.Tag(englishByTheWayTag, client_email);
-
+    RemoveClickfunnelTag.Tag(englishByTheWayTag, client_email);
     //get old token
     Token.findById(id)
       .select("accessToken  -_id")
