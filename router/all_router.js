@@ -6,13 +6,15 @@ const RemoveClickfunnelTag = require("../remove_ClickfunnelTag");
 const Aweber = require("../remove_AweberTag");
 const tradeRefreshToken = require("../utils/trade_refresh_token");
 
-app.get("/webhook", (req, res) => {
+
+router.post("/webhook", (req, res) => {
+
 
   const proTag = "pro";
   const basicTag = "basic";
   const englishByTheWayTag = "english";
   const id = "61c63785bcb637c1cb9e6270";
-  const { client_email, course_name } = req.query;
+  const { client_email, course_name } = req.body;
 
 
   if (course_name == "קונפידנס") {

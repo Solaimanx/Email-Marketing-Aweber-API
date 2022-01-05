@@ -30,13 +30,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true });
-mongoose.connection.on("connected", () => {
-  console.log("connected to the Datebase");
-});
-mongoose.connection.on("error", (error) => {
-  console.log(error);
-});
 
 require("./models/Token_model");
 app.use(require("./router/all_router"));
@@ -52,6 +45,16 @@ app.get("/", (req, res) => {
     server: "running",
   });
 });
+
+mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true });
+mongoose.connection.on("connected", () => {
+  console.log("connected to the Datebase");
+});
+mongoose.connection.on("error", (error) => {
+  console.log(error);
+});
+
+
 
 app.listen(process.env.PORT || 4000, () => {
   console.log(`listening to ${process.env.PORT}`);
