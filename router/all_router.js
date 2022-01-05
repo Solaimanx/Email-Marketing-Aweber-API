@@ -22,8 +22,9 @@ router.post("/webhook", (req, res) => {
 
     RemoveClickfunnelTag.Tag(basicTag, client_email);
     RemoveClickfunnelTag.Tag(proTag, client_email);
-    RemoveClickfunnelTag.Tag(basicTag, client_email);
-    RemoveClickfunnelTag.Tag(proTag, client_email);
+    // RemoveClickfunnelTag.Tag(basicTag, client_email);
+    // RemoveClickfunnelTag.Tag(proTag, client_email);
+    
     //get old token
     Token.findById(id)
       .select("accessToken  -_id")
@@ -52,12 +53,12 @@ router.post("/webhook", (req, res) => {
             const response = await Aweber.removeTag(client_email, accessToken, tag);
             RemoveClickfunnelTag.Tag(proTag, client_email);
             RemoveClickfunnelTag.Tag(basicTag, client_email);
-            RemoveClickfunnelTag.Tag(proTag, client_email);
-            RemoveClickfunnelTag.Tag(basicTag, client_email);
+            // RemoveClickfunnelTag.Tag(proTag, client_email);
+            // RemoveClickfunnelTag.Tag(basicTag, client_email);
             if (response == 209) {
               return res.status(200).json({ message: "success" });
             } else {
-              return res.status(422).json({ message: "failed" });
+              return res.status(200).json({ message: "failed" });
             }
           }
         );
