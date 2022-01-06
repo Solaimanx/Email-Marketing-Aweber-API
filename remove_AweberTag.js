@@ -26,6 +26,7 @@ const removeTag = async (email, accessToken, tag) => {
   try {
     const response = await axios(config);
     const status = response.status;
+    console.log(status)
     return status;
   } catch (error) {
     console.log(error);
