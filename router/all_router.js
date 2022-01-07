@@ -116,6 +116,9 @@ router.post("/webhook", (req, res) => {
 
 
 router.get('/show-token',(req, res) => {
+
+  console.log(req.query)
+
   const id = "61c63785bcb637c1cb9e6270";
 
 
